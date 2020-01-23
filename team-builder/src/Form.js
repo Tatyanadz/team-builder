@@ -1,21 +1,54 @@
 import React, { useState } from 'react';
 
-const Form = () => {
+const Form = (props) => {
+    const [value, setValue] = useState({
+        name: '',
+        email: '',
+        role: ''
+    })
+
+    const changeHandler = event => {
+        setValue({...value, [event.target.name]: event.target.value});
+    };
+
+    const submitForm = event => {
+        event.preventDefault();
+        props.newMember(value);
+        setValue({name: '', email: '', role: ''});
+    };
     return (
-        <form>
-            <div>
-                <label>Full Name</label>
-                <input type="text" name="fullName" required/>
-            </div>
-            <div>
-                <label>Email Address</label>
-                <input type="email" name="email" required/>
-            </div>
-            <div>
-                <label>Job Position</label>
-                <input type="text" name="jobPosition" required/>
-                <button type="submit">Submit</button>
-            </div>
+        <form onSubmit={submitForm}>
+            <label>
+                Name:
+                  <input 
+                  id='name'
+                  name='name'
+                  placeholder='New Member Name'
+                  onChange={changeHandler}
+                  value={value.name}
+                  />
+            </label>
+            <label>
+                Email:
+                  <input 
+                  id='email'
+                  name='email'
+                  placeholder='Your Email'
+                  onChange={changeHandler}
+                  value={value.email}
+                  />
+            </label>
+            <label>
+                Role:
+                  <input 
+                  id='role'
+                  name='role'
+                  placeholder='Role'
+                  onChange={changeHandler}
+                  value={value.role}
+                  />
+            </label>
+            <button type="submit">Add</button>
         </form>
     )
 }
