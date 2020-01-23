@@ -27,3 +27,5 @@ const team = [
         role: "Designer"
     },
 ]
+
+export default team;

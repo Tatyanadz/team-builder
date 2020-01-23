@@ -6,7 +6,7 @@ import Form from'./Form';
 import CurrentMember from './CurrentMember';
 
 function App() {
-  const [team, setTeam] = useState(data);
+  const [team, setTeam] = useState([data]);
 
   const addMember = member => {
     const newMember = {
